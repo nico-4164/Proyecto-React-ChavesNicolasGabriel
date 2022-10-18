@@ -1,54 +1,39 @@
 import React from "react";
-
-import '../../bootstrap-5/css/bootstrap.css';
-import '../../bootstrap-5/css/bootstrap.min.css';
-import '../../bootstrap-5/js/bootstrap'
-import './NavBar.css';
-
+import { styles } from  './NavBar.Style.js';
 import logo from '../../assets/logo.jpg'
+import { CartWidget } from '../CartWidget/CartWidget'
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = ({titulo,children}) => {
 
   const tipoProductos = [
-    {nombre:"Comics", id:1, ruta:""},
-    {nombre:"Mangas", id:2, ruta:""}
-  ]
+    {nombre:"Comics", id:1, ruta:"/categoria/Comics"},
+    {nombre:"Mangas", id:2, ruta:"/categoria/Mangas"},
+    {nombre:"Libros", id:3, ruta:"/categoria/Libros"},
+  ];
 
-  const editoriales = [
-    {nombre:"Ivrea", id:3, ruta:""},
-    {nombre:"Panini", id:4, ruta:""},
-    {nombre:"Ovni Press", id:5, ruta:""}
-  ]
+  const mensaje = "Bienvenido a Kamisama Comics";
 
-    return (
-        
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container-fluid">
-    <img src={logo}></img>
-    <h1 id="titulo">{titulo}</h1>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        {
-        tipoProductos.map((producto) => {
-          return <li class="nav-item"><a class="nav-link" key={producto.id} href={producto.ruta}>{producto.nombre}</a> </li>
-        })
-        }
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Editorial</a>
-          <ul class="dropdown-menu">
-            {
-              editoriales.map((editorial) => {
-                return <li><a class="dropdown-item" key={editorial.id} href={editorial.ruta}>{editorial.nombre}</a></li>
-              })
-            }
-          </ul>
-        </li>
-      </ul>
-      {children}
-    </div>
-  </div>
-</nav>
-    )
-}
+return (       
+<header style={styles.contenedor}>
+  <Link to="/">
+    <img style={styles.imagen} src={logo} alt="Tienda de lectura"/> 
+  </Link>
+  <h1 style={styles.titulo} id="titulo">{mensaje}</h1>
+  <nav>
+    {
+      tipoProductos.map((producto) => {
+        return (
+          <NavLink style={styles.producto} key={producto.id} to={producto.ruta}> {producto.nombre} </NavLink>
+        );
+      })
+    }
+  </nav>
+  <Link to="/carrito">
+    <CartWidget/>
+  </Link>
+</header>
+    );
+};
 
 export default NavBar;
