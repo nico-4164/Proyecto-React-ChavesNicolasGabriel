@@ -2,6 +2,7 @@ import React from "react";
 import Card from "@mui/material/Card";
 import {CardContent,CardMedia,Typography,Button,CardActionArea,CardActions,} from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
+import { withTheme } from "@emotion/react";
 
 const Item = ({ producto }) => {
   return (
@@ -22,14 +23,14 @@ const Item = ({ producto }) => {
           >
             {producto.nombre}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="white">
             ${producto.precio}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-            <NavLink to={"producto/"+producto.id}>
+            <NavLink to={"producto/"+producto.id} color="white">
             Ver Detalles
             </NavLink>
         </Button>
@@ -45,7 +46,8 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     margin: 20,
-    backgroundColor: "rgba(249, 220, 92, 0.3)",
+    backgroundColor: "#3D67E3",
+    color:"white",
   },
   title: {
     textOverflow: "ellipsis",

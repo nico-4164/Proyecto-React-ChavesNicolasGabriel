@@ -20,6 +20,7 @@ const styles = {
       justifyContent: "space-around",
       alignItems: "center",
       flexWrap: "wrap",
+      color:"white",
     }
   }
 
