@@ -7,12 +7,13 @@ import { Link, NavLink } from "react-router-dom";
 const NavBar = ({titulo,children}) => {
 
   const tipoProductos = [
-    {nombre:"Comics", id:1, ruta:"/categoria/Comics"},
-    {nombre:"Mangas", id:2, ruta:"/categoria/Mangas"},
-    {nombre:"Libros", id:3, ruta:"/categoria/Libros"},
+    {nombre:"smartphones", id:1, ruta:"/category/smartphones"},
+    {nombre:"laptops", id:2, ruta:"/category/laptops"},
+    {nombre:"automoviles", id:3, ruta:"/category/automotive"},
+    {nombre:"motocicletas", id:3, ruta:"/category/motorcycle"},
   ];
 
-  const mensaje = "Bienvenido a Kamisama Comics";
+  const mensaje = "Bienvenido a Electronic things";
 
 return (       
 <header style={styles.contenedor}>

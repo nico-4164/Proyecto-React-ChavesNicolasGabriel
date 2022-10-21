@@ -1,55 +1,41 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 
 export const ItemListContainer = ({greeting}) => {
 
-  const [productos, setProducts] = useState([]);
-  const [cargando, setCargando] = useState(true);
-
-  const listaProductos = [
-    {nombre:"Fullmetal Alchelmist", id:0,tipo:"Mangas",precio:600,img:"https://i.imgur.com/DNO73Tm.jpg"},
-    {nombre:"Gantz", id:1,tipo:"Mangas",precio:650,img:"https://i.imgur.com/eVPcG9i.jpg"},
-    {nombre:"Civil War", id:2,tipo:"Comics",precio:2500,img:"https://i.imgur.com/4KZiMaG.jpg"},
-    {nombre:"The Eternals", id:3,tipo:"Comics",precio:2750,img:"https://i.imgur.com/jLtgYMd.jpg"},
-    {nombre:"Harry Potter Y La Piedra Filosofal",id:4,tipo:"Libros",precio:3500,img:"https://i.imgur.com/KayKswA.jpg"},
-    {nombre:"Harry Potter Y La Camara De Los Secretos", id:5,tipo:"Libros",precio:3750,img:"https://i.imgur.com/0eLIFA1.jpg"},
-    {nombre:"Harry Potter Y El Prisionero De Azkabhan", id:6,tipo:"Libros",precio:4500,img:"https://i.imgur.com/8LpGnnq.jpg"},
-  ];
-
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState([])
   const { id } = useParams();
 
-  const filtrarPorCategoria=(lista)=>{
+  const URL_BASE = 'https://dummyjson.com/products'
+  const URL_CAT = `${URL_BASE}/category/${id}`
 
-    if (id === undefined) {
-      return lista;
-    }else{
-      let response=[];
-      for (const item of lista) {
-        if (item.tipo === id) {response.push(item)}
-      }
-      return response;
-    } 
-  }
+
+  console.log("log del id "+id);
 
   useEffect(() => {
-    const getProductos = async () => {
+    const getProducts = async () => {
       try {
-        setProducts(filtrarPorCategoria(listaProductos));
+        const res = await fetch(id ? URL_CAT : URL_BASE );
+        const data = await res.json();
+        setData(data.products);
+        console.log("log del data de la api")
+        console.log(data.products);
       } catch {
         console.log("error");
       } finally {
-        console.log("se termino el useEffect de item list container");
-        setCargando(false);
+        setLoading(false);
       }
     };
-    getProductos();
-  }, [id]);
+    getProducts();
+
+  }, [id, URL_BASE, URL_CAT]);
 
   return (
     <>
       <h1>{greeting}</h1>
-      {<>{cargando ? <h1>Cargando...</h1> : <ItemList productos={productos} />}</>}
+      {<>{loading ? <h1>Cargando...</h1> : <ItemList productos={data} />}</>}
     </>
   )
 }

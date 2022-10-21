@@ -3,7 +3,8 @@ import Item from '../Item/Item'
 
 const ItemList = ({ productos }) => {
 
-    console.log("mensaje en item list");
+    console.log("mensaje en item list ");
+    console.log(productos)
     return (
         <div style={styles.container}>
             {productos.map((producto) =>

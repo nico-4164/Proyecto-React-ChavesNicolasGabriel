@@ -5,14 +5,15 @@ import { Link, NavLink } from "react-router-dom";
 import { withTheme } from "@emotion/react";
 
 const Item = ({ producto }) => {
+
   return (
     <Card sx={{ maxWidth: 345 }} style={styles.container}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={producto.img}
-          alt={producto.nombre}
+          image={producto.thumbnail}
+          alt={producto.title}
         />
         <CardContent>
           <Typography
@@ -21,10 +22,10 @@ const Item = ({ producto }) => {
             component="div"
             style={styles.nombre}
           >
-            {producto.nombre}
+            {producto.title}
           </Typography>
           <Typography variant="body2" color="white">
-            ${producto.precio}
+            ${producto.price}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -46,7 +47,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     margin: 20,
-    backgroundColor: "#3D67E3",
+    backgroundColor: "#83BEEE",
     color:"white",
   },
   title: {
