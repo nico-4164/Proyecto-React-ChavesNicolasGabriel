@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore"
+
 import ItemList from "../ItemList/ItemList";
-import { json, useParams } from "react-router-dom";
+import {db} from "../../../firebase/firebase";
+import { useParams } from "react-router-dom";
 
 export const ItemListContainer = ({greeting}) => {
 
@@ -8,29 +11,26 @@ export const ItemListContainer = ({greeting}) => {
   const [data, setData] = useState([])
   const { id } = useParams();
 
-  const URL_BASE = 'https://dummyjson.com/products'
-  const URL_CAT = `${URL_BASE}/category/${id}`
 
-
-  console.log("log del id "+id);
+  const listaDeProductos = collection(db, 'Productos')
+  const q = id ? query(listaDeProductos, where('category', '==', id )): listaDeProductos;
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetch(id ? URL_CAT : URL_BASE );
-        const data = await res.json();
-        setData(data.products);
-        console.log("log del data de la api")
-        console.log(data.products);
-      } catch {
-        console.log("error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProducts();
-
-  }, [id, URL_BASE, URL_CAT]);
+    getDocs(q)
+    .then((resultado) => {
+      const productosLista = resultado.docs.map((item) => {
+        return{
+          ...item.data(),
+          id: item.id,
+        };
+      });
+      setData(productosLista);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(setLoading(false));
+  }, [id]);
 
   return (
     <>

@@ -1,10 +1,11 @@
-import React from 'react'
 import Item from '../Item/Item'
+import React from 'react'
 
 const ItemList = ({ productos }) => {
 
     console.log("mensaje en item list ");
     console.log(productos)
+    
     return (
         <div style={styles.container}>
             {productos.map((producto) =>

@@ -1,27 +1,31 @@
-import React from 'react';
 import './App.css';
-import NavBar from './componentes/navBar/NavBar';
-import {ItemListContainer} from './containers/ItemListContainer/ItemListContainer/ItemListContainer'
+
+import { Route, Routes } from "react-router-dom";
+
+import { Carrito } from './containers/carrito/Carrito';
+import { CustomProvider } from "./context/CustomContext";
 import { ItemDetailContainer } from "./containers/ItemDetailsContainer/ItemDetailsContainer"
-import { CartWidget } from './componentes/CartWidget/CartWidget';
-import { Routes, Route } from "react-router-dom";
+import {ItemListContainer} from './containers/ItemListContainer/ItemListContainer/ItemListContainer'
+import NavBar from './componentes/navBar/NavBar';
+import React from 'react';
 
 const App = () => {
 
   let nombre="Kamisama Comics";
   const mensaje = "Los mejores precios siempre";
-  console.log("mensaje en App");
   return (
     <>
-    <NavBar titulo={nombre}>
-    </NavBar>
-    <Routes>
-      <Route path="/" element={<ItemListContainer greeting={mensaje} />}/>
-      <Route path="/category/:id" element={<ItemListContainer greeting={mensaje} />}/>
-      <Route path="/producto/:id" element={<ItemDetailContainer />}/>
-      <Route path="/carrito" element={<CartWidget />}/>
-      <Route path="*" element={<ItemListContainer />}/>
-    </Routes>
+    <CustomProvider>
+      <NavBar titulo={nombre}>
+      </NavBar>
+      <Routes>
+        <Route path="/" element={<ItemListContainer greeting={mensaje} />}/>
+        <Route path="/category/:id" element={<ItemListContainer greeting={mensaje} />}/>
+        <Route path="/producto/:id" element={<ItemDetailContainer />}/>
+        <Route path="/carrito" element={<Carrito />}/>
+        <Route path="*" element={<ItemListContainer />}/>
+      </Routes>
+    </CustomProvider>
     </>
   );
 }

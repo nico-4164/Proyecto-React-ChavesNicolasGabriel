@@ -1,16 +1,17 @@
-import React from "react";
-import { styles } from  './NavBar.Style.js';
-import logo from '../../assets/logo.jpg'
-import { CartWidget } from '../CartWidget/CartWidget'
 import { Link, NavLink } from "react-router-dom";
+
+import { CartWidget } from '../CartWidget/CartWidget'
+import React from "react";
+import logo from '../../assets/logo.jpg'
+import { styles } from  './NavBar.Style.js';
 
 const NavBar = ({titulo,children}) => {
 
   const tipoProductos = [
-    {nombre:"smartphones", id:1, ruta:"/category/smartphones"},
-    {nombre:"laptops", id:2, ruta:"/category/laptops"},
-    {nombre:"automoviles", id:3, ruta:"/category/automotive"},
-    {nombre:"motocicletas", id:3, ruta:"/category/motorcycle"},
+    {nombre:"smartphones", id:"smartphones", ruta:"/category/smartphones"},
+    {nombre:"laptops", id:"laptops", ruta:"/category/laptops"},
+    {nombre:"automoviles", id:"automotive", ruta:"/category/automotive"},
+    {nombre:"motocicletas", id:"motorcycle", ruta:"/category/motorcycle"},
   ];
 
   const mensaje = "Bienvenido a Electronic things";
@@ -18,7 +19,7 @@ const NavBar = ({titulo,children}) => {
 return (       
 <header style={styles.contenedor}>
   <Link to="/">
-    <img style={styles.imagen} src={logo} alt="Tienda de lectura"/> 
+    <img style={styles.imagen} src={logo} alt="Tienda de electronica"/> 
   </Link>
   <h1 style={styles.titulo} id="titulo">{mensaje}</h1>
   <nav>
