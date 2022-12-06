@@ -11,7 +11,7 @@ import React from 'react';
 
 const App = () => {
 
-  let nombre="Kamisama Comics";
+  let nombre="electronic things";
   const mensaje = "Los mejores precios siempre";
   return (
     <>
