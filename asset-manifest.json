@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Proyecto-React-ChavesNicolasGabriel/static/css/main.1ff31424.css",
+    "main.js": "/Proyecto-React-ChavesNicolasGabriel/static/js/main.1808ae3e.js",
+    "static/js/787.b446b6dc.chunk.js": "/Proyecto-React-ChavesNicolasGabriel/static/js/787.b446b6dc.chunk.js",
+    "index.html": "/Proyecto-React-ChavesNicolasGabriel/index.html",
+    "main.1ff31424.css.map": "/Proyecto-React-ChavesNicolasGabriel/static/css/main.1ff31424.css.map",
+    "main.1808ae3e.js.map": "/Proyecto-React-ChavesNicolasGabriel/static/js/main.1808ae3e.js.map",
+    "787.b446b6dc.chunk.js.map": "/Proyecto-React-ChavesNicolasGabriel/static/js/787.b446b6dc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ff31424.css",
+    "static/js/main.1808ae3e.js"
+  ]
+}
